@@ -1,0 +1,125 @@
+body {
+    background-color: #f8f8f8;
+}
+.breadcrumb-container {
+    background-color: white;
+    padding: 10px 0;
+    position: relative;
+}
+.breadcrumb-container h3{
+    position: absolute;
+    left: 5%;
+}
+.breadcrumb {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+.breadcrumb li {
+    margin: 0 5px;
+    color: #999;
+    cursor: pointer;
+}
+.breadcrumb li a {
+    text-decoration: none;
+    color: black;
+    transition: all .5s ease;
+    font-weight: 500;
+}
+
+.breadcrumb li a:hover{
+    font-weight: bold;
+}
+.cart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+.cart-box {
+    background-color: white;
+    padding: 10% 40px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+.cart-box img {
+    width: 80px;
+    margin-bottom: 20px;
+}
+.cart-box h2 {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.cart-box .btn {
+    background: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+.cart-box .btn:hover {
+    background: #333;
+}
+
+@media only screen and (max-width: 600px) {
+    .breadcrumb-container h3{
+        opacity: 0;
+    }
+    }
+
+
+    
+    /* css for order.html */
+    
+    .cart-container {
+        padding: 20px;
+    }
+    .cart-box {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .cart-header {
+        font-weight: bold;
+        font-size: 18px;
+    }
+    .cart-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 0;
+        border-bottom: 1px solid #ddd;
+    }
+    .cart-item img {
+        width: 80px;
+        border-radius: 5px;
+    }
+    .cart-item-details {
+        flex: 1;
+        margin-left: 15px;
+    }
+    .cart-item-title {
+        font-weight: bold;
+    }
+    .cart-item-price {
+        color: red;
+        font-weight: bold;
+    }
+    .cart-summary {
+        margin-top: 20px;
+        text-align: right;
+    }
+    .checkout-btn {
+        background: black;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+    .checkout-btn:hover {
+        background: #333;
+    }
