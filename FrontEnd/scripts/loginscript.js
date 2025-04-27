@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (validateLogin(username, password)) {
-            window.location.href = "Tesla.html";
+            window.location.href = "";
         } else {
             alert("Invalid username or password. Please try again.");
         }
