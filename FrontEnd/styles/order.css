@@ -1,5 +1,13 @@
-    .cart-container {
+
+   .cart-container {
         padding: 20px;
+    }
+    .logo{
+        color: #fff;
+    }
+    .breadcrumb li a{
+        padding: 0 10px;
+        color: #fff;
     }
     .cart-box {
         background-color: white;

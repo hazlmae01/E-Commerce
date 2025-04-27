@@ -10,6 +10,9 @@ body {
     position: absolute;
     left: 5%;
 }
+.logo-color{
+    color: black;
+}
 .breadcrumb {
     display: flex;
     justify-content: center;
