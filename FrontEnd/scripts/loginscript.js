@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (validateLogin(username, password)) {
-            window.location.href = "/FrontEnd/index.html";
+            window.location.href = "Tesla.html";
         } else {
             alert("Invalid username or password. Please try again.");
         }
@@ -24,9 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function validateLogin(username, password) {
         // Example credentials (replace with real authentication in production)
-        const loginUsername = "admin";
-        const loginPassword = "password123";
+        const demoUsername = "admin";
+        const demoPassword = "password123";
 
-        return username === loginUsername && password === loginPassword;
+        return username === demoUsername && password === demoPassword;
     }
 });
