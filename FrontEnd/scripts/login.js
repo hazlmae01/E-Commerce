@@ -1,12 +1,12 @@
 form.addEventListener("submit", () => {
-    const register = {
+    const login = {
         email: email.value,
         username: username.value,
         password: password.value
     }
-    fetch("/api/signup", {
+    fetch("/api/login", {
         method: "POST",
-        body: JSON.stringify(register),
+        body: JSON.stringify(login),
         headers: {
             "Content-type": "application/json"
         }
