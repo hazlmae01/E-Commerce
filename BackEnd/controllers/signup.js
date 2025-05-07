@@ -1,24 +1,35 @@
 const db = require("../DB/db-config");
-const bcryt = require("bcryptjs");
 
-const register = async(req, res) => {
-    const {username, email, password:Npassword} = req.body
-    if(!username ||  !Npassword ||!email ) return res.json({status: "error", error: "please Enter your username and password"});
-    else{
-        console.log(email);
-        db.query('SELECT email FROM users WHERE email = ?', [email], async (err, result) =>{
-            if (err) throw err;
-            if(result[0]) return res.json({status: "error", error: "Email has already been registered"})
-                else{
-                    const password = bcrypt.hash(Npassword, 8);
-                    console.log(password);
-                    db.query('INSERT INTO users SET ?', {username, email: email, password: password}, (error, results) =>{
-                        if(error) throw error;
-                        return res.json({status: "success", success: "User has been registered"});
-                    })
-                }
-        })
+const register = async (req, res) => {
+    const { username, email, password } = req.body;
+
+    if (!username || !email || !password) {
+        return res.json({ status: "error", error: "Please enter your username, email, and password." });
     }
-}
+
+    db.query('SELECT email FROM users WHERE email = ?', [email], (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.json({ status: "error", error: "Database error during email check." });
+        }
+
+        if (result.length > 0) {
+            return res.json({ status: "error", error: "Email has already been registered." });
+        } else {
+            db.query(
+                'INSERT INTO users SET ?',
+                { name: username, email: email, password: password },
+                (error, results) => {
+                    if (error) {
+                        console.error(error);
+                        return res.json({ status: "error", error: "Database error during registration." });
+                    }
+
+                    return res.json({ status: "success", success: "User has been registered!" });
+                }
+            );
+        }
+    });
+};
 
 module.exports = register;
