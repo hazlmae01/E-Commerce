@@ -11,5 +11,8 @@ router.get("/login", (req, res)=> {
     res.sendFile("login.html", {root: "./FrontEnd/views"});
 
 })
+router.get("/homePage", (req, res)=> {
+    res.sendFile("index.html", {root: "./FrontEnd/views"});
 
+})
 module.exports = router;
