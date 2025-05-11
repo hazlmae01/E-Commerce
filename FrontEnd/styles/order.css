@@ -5,6 +5,9 @@
     .logo{
         color: #fff;
     }
+    .logo h3{
+        font-weight: bold;
+    }
     .breadcrumb li a{
         padding: 0 10px;
         color: #fff;
@@ -64,3 +67,4 @@
         zoom: 1.5;
         cursor: pointer;
     }
+    

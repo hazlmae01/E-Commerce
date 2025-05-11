@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Address Form</title>
+  <link rel="stylesheet" href="/FrontEnd/styles/newaddress.css">
+
+</head>
+<body>
+  <div class="modal">
+    <div class="modal-content">
+      <h2>New Address</h2>
+      <p>To place order, please add a delivery address</p>
+      <form id="addressForm">
+        <input type="text" placeholder="Full Name" name="fullName" required />
+        <input type="text" placeholder="Phone Number" name="phoneNumber" required />
+        <select name="region" required>
+          <option value="">Select </option>
+          <option value="">Region, Province, City, Barangay</option>
+          <option value="ncr">NCR, Metro Manila, Quezon City, Barangay XYZ</option>
+          <option value="region4a">Region IV-A, Cavite, Imus, Barangay ABC</option>
+        </select>
+        <input type="text" placeholder="Postal Code" name="postalCode" required />
+        <input type="text" placeholder="Street Name, Building, House No." name="street" required />
+
+        <div class="map-placeholder">+ Add Location</div>
+
+        <label>Label As:</label>
+        <div class="label-options">
+          <button type="button" class="label-btn" data-value="Home">Home</button>
+          <button type="button" class="label-btn" data-value="Work">Work</button>
+          <input type="hidden" name="label" id="labelInput" required />
+        </div>
+
+        <div class="buttons">
+          <button type="button" onclick="cancelForm()">Cancel</button>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/FrontEnd/scripts/newaddress.js"></script>
+</body>
+</html>
