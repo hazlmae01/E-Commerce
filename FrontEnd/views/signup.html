@@ -16,25 +16,38 @@
     <div class="login-container">
         <form onsubmit="return false;" id="form">
             <h2>Sign Up</h2>
+
             <div class="input-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" autocomplete="off" required>
             </div>
+
             <div class="input-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" autocomplete="off" required>
             </div>
+
             <div class="input-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" autocomplete="off" required>
             </div>
+
+            <div class="input-group">
+                <label for="role" style="margin-right: 3px;">Register as </label>
+                <select id="role" name="role" required>
+                    <option value="user" selected>User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+
             <div class="alert alert-danger" role="alert" id="error" style="display: none;"></div>
             <div class="alert alert-success" role="alert" id="success" style="display: none;"></div>
-                <button type="submit" id="signupBtn">Sign up</button>
-                <p>Already have an account? <a href="/login">Log in?</a></p>
-            
+
+            <button type="submit" id="signupBtn">Sign up</button>
+            <p>Already have an account? <a href="/login">Log in?</a></p>
         </form>
     </div>
+
     <script src="../scripts/signup.js"></script>
 </body>
 </html>

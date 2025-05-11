@@ -1,10 +1,10 @@
 const db = require("../DB/db-config");
 
 const register = async (req, res) => {
-    const { username, email, password } = req.body;
+    const { username, email, password, role } = req.body;
 
-    if (!username || !email || !password) {
-        return res.json({ status: "error", error: "Please enter your username, email, and password." });
+    if (!username || !email || !password || !role) {
+        return res.json({ status: "error", error: "Please enter your username, email, password, and role." });
     }
 
     db.query('SELECT email FROM users WHERE email = ?', [email], (err, result) => {
@@ -18,7 +18,7 @@ const register = async (req, res) => {
         } else {
             db.query(
                 'INSERT INTO users SET ?',
-                { name: username, email: email, password: password },
+                { name: username, email: email, password: password, role: role },
                 (error, results) => {
                     if (error) {
                         console.error(error);
@@ -26,7 +26,6 @@ const register = async (req, res) => {
                     }
 
                     return res.json({ status: "success", success: "User has been registered!" });
-                    
                 }
             );
         }

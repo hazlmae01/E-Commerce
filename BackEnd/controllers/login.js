@@ -20,12 +20,10 @@ const login = async (req, res) => {
             return res.json({ status: "error", error: "Incorrect username or password." });
         }
 
-        // Create token
         const token = jwt.sign({ id: user.user_id }, process.env.JWT_SECRET, {
-            expiresIn: process.env.JWT_EXPIRES, // 90d is okay here
+            expiresIn: process.env.JWT_EXPIRES, 
         });
 
-        // Cookie options (parse number of days from .env)
         const cookieExpiryDays = Number(process.env.COOKIE_EXPIRES) || 1;
 
         const cookieOptions = {
