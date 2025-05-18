@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use("/scripts", express.static(__dirname + '/FrontEnd/scripts'));
 app.use("/styles", express.static(__dirname + '/FrontEnd/styles'));
+app.use("/images", express.static(__dirname + '/FrontEnd/images'));
 app.set("view engine", "ejs");
 app.set("views", "./FrontEnd/views");
 app.use(cookie());
@@ -23,6 +24,7 @@ app.use(express.json());
 
 app.use("/", require("./BackEnd/DB/pages"));
 app.use("/api", require("./BackEnd/controllers/auth"));
+app.use("/api", require("./BackEnd/controllers/products"));
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
