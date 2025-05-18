@@ -67,6 +67,12 @@ h2 {
 button {
     width: 100%;
     padding: 10px;
+    background-color: #000000;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 4px;
+
     background-color: #0d0e0f;
     border: none;
     color: white;
@@ -75,6 +81,7 @@ button {
 }
 
 button:hover {
+    background-color: #3b3b3b;
     background-color: #131414;
 }
 
@@ -83,6 +90,7 @@ button:hover {
 }
 
 .register-link a {
+    color: #007bff;
     text-decoration: none;
 }
 
