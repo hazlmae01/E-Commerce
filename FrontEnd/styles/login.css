@@ -1,3 +1,4 @@
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -71,11 +72,17 @@ button {
     color: white;
     font-size: 16px;
     border-radius: 4px;
+
+    background-color: #0d0e0f;
+    border: none;
+    color: white;
+    font-size: 16px;
     cursor: pointer;
 }
 
 button:hover {
     background-color: #3b3b3b;
+    background-color: #131414;
 }
 
 .register-link {
