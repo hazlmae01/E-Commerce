@@ -12,7 +12,7 @@ router.post("/signup", register);
 router.post("/login", login);
 router.post("/logout", logout);
 
-// Protected route: only accessible if authenticated and an admin
+// Protected routes
 router.post("/products", authMiddleware, addProduct);
 
 module.exports = router;

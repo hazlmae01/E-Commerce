@@ -8,20 +8,16 @@ const login = async (req, res) => {
         return res.json({ status: "error", error: "Please enter your username and password." });
     }
 
-    db.query('SELECT * FROM users WHERE name = ?', [username], (err, result) => {
-        if (err) {
-            console.error("Database error:", err);
-            return res.json({ status: "error", error: "Database error during login." });
-        }
-
-        const user = result[0];
+    try {
+        const [rows] = await db.query('SELECT * FROM users WHERE name = ?', [username]);
+        const user = rows[0];
 
         if (!user || user.password !== password) {
             return res.json({ status: "error", error: "Incorrect username or password." });
         }
 
         const token = jwt.sign({ id: user.user_id }, process.env.JWT_SECRET, {
-            expiresIn: process.env.JWT_EXPIRES, 
+            expiresIn: process.env.JWT_EXPIRES,
         });
 
         const cookieExpiryDays = Number(process.env.COOKIE_EXPIRES) || 1;
@@ -31,11 +27,13 @@ const login = async (req, res) => {
             httpOnly: true,
         };
 
-        // Set cookie
         res.cookie("userRegistered", token, cookieOptions);
 
         return res.json({ status: "success", success: "User has been logged in" });
-    });
+    } catch (err) {
+        console.error("Database error:", err);
+        return res.json({ status: "error", error: "Database error during login." });
+    }
 };
 
 module.exports = login;
