@@ -1,0 +1,82 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f3f3f3;
+  margin: 0;
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+input, select {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.map-placeholder {
+  background: #f1f1f1;
+  padding: 40px;
+  text-align: center;
+  border: 1px dashed #ccc;
+  margin: 10px 0;
+  border-radius: 5px;
+  color: gray;
+  cursor: pointer;
+}
+
+.label-options {
+  margin: 10px 0;
+}
+
+.label-btn {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.label-btn.active {
+  background-color: black;
+  color: white;
+  border-color: black;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+button[type="button"] {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ccc;
+  cursor: pointer;
+}

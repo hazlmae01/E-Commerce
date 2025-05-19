@@ -2,7 +2,7 @@ body {
     background-color: #f8f8f8;
 }
 .breadcrumb-container {
-    background-color: white;
+    background-color: black;
     padding: 10px 0;
     position: relative;
 }
@@ -11,7 +11,10 @@ body {
     left: 5%;
 }
 .logo-color{
-    color: black;
+    color: white;
+}
+.logo-color h3{
+    font-weight: bold;
 }
 .breadcrumb {
     display: flex;
@@ -26,7 +29,7 @@ body {
 }
 .breadcrumb li a {
     text-decoration: none;
-    color: black;
+    color: white;
     transition: all .5s ease;
     font-weight: 500;
 }
@@ -125,4 +128,8 @@ body {
     }
     .checkout-btn:hover {
         background: #333;
+    }
+    .checkout-btn a{
+        color: white;
+        text-decoration: none;
     }
