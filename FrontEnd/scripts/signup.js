@@ -1,31 +1,27 @@
-document.getElementById('signupBtn').addEventListener("click", async () => {
-    const username = document.getElementById('username').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value.trim();
-    
-    if (!username || !email || !password) {
-        alert('Please fill in all fields.');
-        return;
+form.addEventListener("submit", () => {
+    const register = {
+        email: email.value,
+        username: username.value,
+        password: password.value,
+        role : role.value
     }
-
-    try {
-        const response = await fetch('/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username, email, password })
-        });
-
-        const result = await response.text();
-
-        alert(result);
-
-        if (response.ok) {
-            window.location.href = '/FrontEnd/views/LoginPage.html';
+    fetch("/api/signup", {
+        method: "POST",
+        body: JSON.stringify(register),
+        headers: {
+            "Content-type": "application/json"
         }
-    } catch (error) {
-        console.error('Error during signup:', error);
-        alert('Signup failed. Please try again.');
-    }
-});
+    }).then(res => res.json())
+        .then(data =>{
+            if(data.status == "error") {
+                success.style.display = "none"
+                error.style.display = "block"
+                error.innerText = data.error
+            }else{
+                error.style.display = "none"
+                success.style.display = "block"
+                success.innerText = data.success
+            }
+        })
+})
+
