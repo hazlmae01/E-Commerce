@@ -1,6 +1,7 @@
-
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("form");
+    const error = document.getElementById("error");    // Make sure you have this element in your HTML
+    const success = document.getElementById("success"); // Make sure you have this element in your HTML
 
     form.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -30,7 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 error.style.display = "none";
                 success.style.display = "block";
                 success.innerText = data.success;
-                window.location.href = "/homePage";
+
+                if (data.role === "admin") {
+                    window.location.href = "/admin";
+                } else {
+                    window.location.href = "/homePage";
+                }
             }
         });
     });
