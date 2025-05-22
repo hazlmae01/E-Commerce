@@ -6,27 +6,27 @@ const authMiddleware = async (req, res, next) => {
         const token = req.cookies.userRegistered;
 
         if (!token) {
-            return res.redirect(`/unauthorized?route=${encodeURIComponent(req.originalUrl)}`);
+            return res.redirect("/unauthorized");
         }
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-        const [results] = await db.query("SELECT * FROM users WHERE user_id = ?", [decoded.id]);
+        const [results] = await db.query(
+            `SELECT u.*, r.name AS role
+             FROM users u
+             LEFT JOIN roles r ON u.role_id = r.role_id
+             WHERE u.user_id = ?`,
+            [decoded.id]
+        );
 
         if (!results || results.length === 0) {
-            return res.redirect(`/unauthorized?route=${encodeURIComponent(req.originalUrl)}`);
+            return res.redirect("/unauthorized");
         }
 
-        const user = results[0];
-        req.user = user;
-
-        if (req.originalUrl.startsWith("/addProduct") && user.role !== "admin") {
-            return res.redirect(`/unauthorized?route=addProduct`);
-        }
-
+        req.user = results[0];
         next();
     } catch (err) {
-        return res.redirect(`/unauthorized?route=${encodeURIComponent(req.originalUrl)}`);
+        return res.redirect("/unauthorized");
     }
 };
 

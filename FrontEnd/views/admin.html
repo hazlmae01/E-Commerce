@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="../styles/admin.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <button id="logoutBtn" class="btn btn-link text-danger">Log out</button>
+    <h3>Admin Panel</h3>
+    <nav>
+        
+      <a href="#" id="addProductBtn" class="active">Add Product</a>
+      <a href="#" id="viewProductsBtn">View Products & Stocks</a>
+      <a href="#" id="viewSoldBtn">View Sold Products</a>
+    </nav>
+  </div>
+
+  <main class="content">
+    <!-- Add Product Form -->
+    <section id="addProductSection">
+      <h2>Add Product</h2>
+      <form id="addProductForm">
+        <label for="productName">Product Name</label>
+        <input type="text" id="productName" required />
+
+        <label for="productDescription">Description</label>
+        <textarea id="productDescription" rows="3" required></textarea>
+
+        <label for="productPrice">Price</label>
+        <input type="number" id="productPrice" step="0.01" min="0" required />
+
+        <label for="productStock">Stock Quantity</label>
+        <input type="number" id="productStock" min="0" required />
+
+        <label for="productCategory">Category</label>
+        <input type="text" id="productCategory" required />
+
+        <button type="submit">Add Product</button>
+      </form>
+    </section>
+
+    <!-- View Products Table -->
+    <section id="viewProductsSection" class="hidden">
+      <h2>Current Products & Stocks</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Product ID</th><th>Name</th><th>Description</th><th>Price</th><th>Stock</th><th>Category</th>
+          </tr>
+        </thead>
+        <tbody id="productsTableBody">
+          <!-- filled by JS -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- View Sold Products Table -->
+    <section id="viewSoldSection" class="hidden">
+      <h2>Sold Products</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Order ID</th><th>Product Name</th><th>Quantity Sold</th><th>Total Amount</th><th>Order Status</th>
+          </tr>
+        </thead>
+        <tbody id="soldProductsTableBody">
+          <!-- filled by JS -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="../scripts/admin.js"></script>
+    <script src="../scripts/logout.js"></script>
+</body>
+</html>

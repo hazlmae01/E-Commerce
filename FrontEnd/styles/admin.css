@@ -1,0 +1,126 @@
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background-color: #222;
+  color: #eee;
+  height: 100vh;
+  padding: 20px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h3 {
+  margin: 0 0 20px 0;
+  font-weight: normal;
+  text-align: center;
+}
+
+.sidebar nav a {
+  color: #ccc;
+  text-decoration: none;
+  padding: 12px 15px;
+  display: block;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  user-select: none;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+  background-color: #444;
+  color: white;
+}
+
+/* Main content */
+.content {
+  flex-grow: 1;
+  padding: 30px;
+  overflow-y: auto;
+  background: white;
+  box-shadow: inset 0 0 10px #ccc;
+}
+
+/* Section titles */
+h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+/* Form styles */
+form {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="number"],
+form textarea {
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  resize: vertical;
+}
+
+form button {
+  padding: 12px;
+  border: none;
+  background-color: #222;
+  color: white;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+form button:hover {
+  background-color: #555;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #222;
+  color: white;
+}
+
+th, td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+tbody tr:hover {
+  background-color: #f0f0f0;
+}
+
+/* Utility */
+.hidden {
+  display: none;
+}
