@@ -40,6 +40,9 @@ body {
   font-size: 12px;
   cursor: pointer;
 }
+.upload-btn:hover{
+  background-color: #333;
+}
 
 #photoInput {
   display: none;
@@ -69,10 +72,9 @@ body {
 }
 
 .menu li:hover {
-  background-color: #000;
+  background-color: #333;
   color: #fff;
 }
-
 
 .profile-content {
   flex: 1;
@@ -119,8 +121,9 @@ form button {
 }
 
 form button:hover {
-  background-color: black;
+  background-color: #333;
 }
+
 .section {
   display: none;
 }
@@ -128,6 +131,25 @@ form button:hover {
 .section.active {
   display: block;
 }
+
+.back-button {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 8px 16px;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #333;
+  text-decoration: none;
+}
+
 
 /* responsiveness */
 @media (max-width: 768px) {

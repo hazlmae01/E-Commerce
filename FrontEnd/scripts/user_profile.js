@@ -1,4 +1,4 @@
-// Profile photo change logic (same as before)
+// Profile photo change logic
 const photoInput = document.getElementById("photoInput");
 const profileImage = document.getElementById("profileImage");
 const displayName = document.getElementById("displayName");
@@ -31,11 +31,8 @@ const sections = document.querySelectorAll(".section");
 
 menuItems.forEach((item, index) => {
   item.addEventListener("click", () => {
-    // Remove active from all menu items and sections
     menuItems.forEach(i => i.classList.remove("active"));
     sections.forEach(s => s.classList.remove("active"));
-
-    // Add active to current
     item.classList.add("active");
     sections[index].classList.add("active");
   });

@@ -1,4 +1,3 @@
-require("dotenv").config();
 const sql = require("mysql2");
 const db = sql.createConnection({
     host : process.env.DATABASE_HOST,
@@ -7,4 +6,4 @@ const db = sql.createConnection({
     database : process.env.DATABASE
 });
 
-module.exports = db;
+module.exports = pool;
