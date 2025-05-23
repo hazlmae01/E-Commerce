@@ -2,7 +2,7 @@ const express = require("express");
 const register = require("./signup");
 const login = require("./login");
 const logout = require("./logout");
-const authMiddleware = require("../middleware/authMiddleware");
+const authMiddleware = require("../Middleware/authMiddleware");
 
 const router = express.Router();
 

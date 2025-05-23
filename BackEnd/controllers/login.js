@@ -9,7 +9,13 @@ const login = async (req, res) => {
     }
 
     try {
-        const [rows] = await db.query('SELECT * FROM users WHERE name = ?', [username]);
+        const [rows] = await db.query(`
+            SELECT u.*, r.name AS role_name 
+            FROM users u 
+            LEFT JOIN roles r ON u.role_id = r.role_id 
+            WHERE u.name = ?
+        `, [username]);
+
         const user = rows[0];
 
         if (!user || user.password !== password) {
@@ -29,7 +35,11 @@ const login = async (req, res) => {
 
         res.cookie("userRegistered", token, cookieOptions);
 
-        return res.json({ status: "success", success: "User has been logged in" });
+        return res.json({ 
+            status: "success", 
+            success: "User has been logged in", 
+            role: user.role_name 
+        });
     } catch (err) {
         console.error("Database error:", err);
         return res.json({ status: "error", error: "Database error during login." });

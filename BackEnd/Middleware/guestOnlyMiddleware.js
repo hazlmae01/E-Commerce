@@ -1,21 +1,17 @@
 const jwt = require("jsonwebtoken");
 
-const guestOnlyMiddleware = async (req, res, next) => {
+const guestOnlyMiddleware = (req, res, next) => {
   const token = req.cookies.userRegistered;
 
-  if (!token) {
-    return next();
-  }
+  if (!token) return next();
 
   try {
-    await new Promise((resolve, reject) => {
-      jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-        if (err) reject(err);
-        else resolve(decoded);
-      });
-    });
-    return res.redirect("/homePage");
-  } catch {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // If verified and has an id, assume authenticated
+    if (decoded?.id) return res.redirect("/homePage");
+    return next();
+  } catch (err) {
+    // Invalid token, continue as guest
     return next();
   }
 };

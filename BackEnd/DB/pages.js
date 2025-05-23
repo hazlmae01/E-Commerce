@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const guestOnly = require("../middleware/guestOnlyMiddleware");
-const authMiddleware = require("../middleware/authMiddleware");
+const guestOnly = require("../Middleware/guestOnlyMiddleware");
+const authMiddleware = require("../Middleware/authMiddleware");
+const isAdmin = require("../Middleware/isAdminMiddleware");
 
 router.get("/", guestOnly, (req, res) => {
     res.render("index");
@@ -28,4 +29,9 @@ router.get("/cart", authMiddleware, (req, res) => {
 router.get("/unauthorized", (req, res) => {
     res.sendFile("unauthorized.html", { root: "./FrontEnd/views" });
 });
+router.get("/admin", authMiddleware, isAdmin, (req, res) => {
+  res.sendFile("admin.html", { root: "./FrontEnd/views" });
+});
+
+
 module.exports = router;
