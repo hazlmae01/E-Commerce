@@ -134,7 +134,7 @@ form button:hover {
 
 .back-button {
   display: inline-block;
-  margin-bottom: 20px;
+  margin-top: 20px;
   padding: 8px 16px;
   background-color: black;
   color: white;
@@ -143,6 +143,7 @@ form button:hover {
   font-size: 14px;
   font-weight: 500;
   transition: background-color 0.3s ease;
+  width: 110px;
 }
 
 .back-button:hover {
