@@ -14,6 +14,9 @@ body {
   background-color: white;
   border-right: 1px solid #ddd;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile-summary {
@@ -31,16 +34,18 @@ body {
 }
 
 .upload-btn {
-  display: inline-block;
   margin-top: 10px;
-  background: black;
+  background-color: black;
   color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 12px;
+  padding: 6px 16px;
+  border-radius: 5px;
+  font-size: 13px;
+  border: none;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-.upload-btn:hover{
+
+.upload-btn:hover {
   background-color: #333;
 }
 
@@ -51,40 +56,48 @@ body {
 .profile-summary h3 {
   margin-top: 10px;
   font-size: 18px;
+  font-weight: 600;
+  color: #333;
 }
 
 .menu {
   list-style: none;
   padding: 0;
+  width: 100%;
 }
 
 .menu li {
-  padding: 12px;
+  padding: 12px 20px;
   cursor: pointer;
-  color: #555;
-  border-radius: 4px;
-  margin-bottom: 5px;
+  color: #333;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.3s, color 0.3s;
+  text-align: left;
+  margin-top: 10px;
 }
 
-.menu li.active {
-  background-color: black;
-  color: #fff;
-}
-
+.menu li.active,
 .menu li:hover {
-  background-color: #333;
-  color: #fff;
+  background-color: black;
+  color: white;
 }
 
 .profile-content {
   flex: 1;
   background-color: white;
   padding: 30px;
+  overflow-y: auto;
 }
 
 .profile-content h2 {
   margin-bottom: 20px;
   color: #333;
+}
+
+.profile-content p {
+  color: #555;
+  line-height: 1.6;
 }
 
 form {
@@ -103,6 +116,7 @@ form textarea {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  font-size: 14px;
 }
 
 form textarea {
@@ -118,6 +132,8 @@ form button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 15px;
 }
 
 form button:hover {
@@ -143,7 +159,7 @@ form button:hover {
   font-size: 14px;
   font-weight: 500;
   transition: background-color 0.3s ease;
-  width: 110px;
+  width: fit-content;
 }
 
 .back-button:hover {
@@ -151,8 +167,20 @@ form button:hover {
   text-decoration: none;
 }
 
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 4px;
+  min-height: 18px; 
+  visibility: hidden;
+}
 
-/* responsiveness */
+.error-message.visible {
+  visibility: visible;
+}
+
+
+/* Responsive layout */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;

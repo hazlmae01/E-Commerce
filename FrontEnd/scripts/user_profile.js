@@ -18,11 +18,89 @@ photoInput.addEventListener("change", function () {
 
 // Save profile logic
 const profileForm = document.getElementById("profileForm");
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const bioInput = document.getElementById("bio");
+
+const nameError = document.getElementById("nameError");
+const emailError = document.getElementById("emailError");
+const bioError = document.getElementById("bioError");
+
 profileForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  const name = document.getElementById("name").value;
+
+  // Trimmed values
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+  const bio = bioInput.value.trim();
+
+  let isValid = true;
+
+  // Validate Name
+  if (!name) {
+    nameError.textContent = "Please enter your full name.";
+    nameError.classList.add("visible");
+    isValid = false;
+  } else {
+    nameError.textContent = "";
+    nameError.classList.remove("visible");
+  }
+
+  // Validate Email
+  if (!email) {
+    emailError.textContent = "Please enter your email address.";
+    emailError.classList.add("visible");
+    isValid = false;
+  } else {
+    emailError.textContent = "";
+    emailError.classList.remove("visible");
+  }
+
+  // Validate Bio
+  if (!bio) {
+    bioError.textContent = "Please enter your bio.";
+    bioError.classList.add("visible");
+    isValid = false;
+  } else {
+    bioError.textContent = "";
+    bioError.classList.remove("visible");
+  }
+
+  if (!isValid) {
+    // Focus first invalid input field
+    if (!name) {
+      nameInput.focus();
+    } else if (!email) {
+      emailInput.focus();
+    } else {
+      bioInput.focus();
+    }
+    return;
+  }
+
+  // If valid, update display name and show success alert
   displayName.textContent = name;
   alert("Profile updated successfully!");
+});
+
+// Clear error messages when user types
+nameInput.addEventListener("input", () => {
+  if (nameInput.value.trim() !== "") {
+    nameError.textContent = "";
+    nameError.classList.remove("visible");
+  }
+});
+emailInput.addEventListener("input", () => {
+  if (emailInput.value.trim() !== "") {
+    emailError.textContent = "";
+    emailError.classList.remove("visible");
+  }
+});
+bioInput.addEventListener("input", () => {
+  if (bioInput.value.trim() !== "") {
+    bioError.textContent = "";
+    bioError.classList.remove("visible");
+  }
 });
 
 // Menu navigation logic

@@ -2,54 +2,61 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Profile Dashboard</title>
-  <link rel="stylesheet" href="/FrontEnd/styles/user_profile.css">
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="/FrontEnd/styles/user_profile.css" />
 </head>
 <body>
   <div class="container">
-
     <div class="sidebar">
-      
       <div class="profile-summary">
-        <img src="https://via.placeholder.com/80" id="profileImage" alt="Profile Picture" />
+        <img id="profileImage" src="default.jpg" alt="Profile Photo" />
         <input type="file" id="photoInput" accept="image/*" />
-        <label class="upload-btn" for="photoInput">Change Photo</label>
-        <h3 id="displayName">John Doe</h3>
+        <button class="upload-btn" onclick="document.getElementById('photoInput').click()">Upload Photo</button>
+        <h3 id="displayName"></h3>
       </div>
       <ul class="menu">
-        <li class="active">Profile</li>
+        <li class="active">My Account</li>
+        <li>My Wishlist</li>
+        <li>My Addresses</li>
         <li>Settings</li>
-        <li>Activity</li>
       </ul>
     </div>
 
     <div class="profile-content">
       <div class="section active">
-        <h2>Edit Profile</h2>
+        <h2>My Account</h2>
         <form id="profileForm">
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="Enter your name" required />
+          <label for="name">Full Name:</label>
+            <input type="text" id="name" placeholder="Enter Name" />
+            <div id="nameError" class="error-message"></div>
 
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="Enter your email" required />
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" placeholder="Enter Email" />
+            <div id="emailError" class="error-message"></div>
 
-          <label for="bio">Bio</label>
-          <textarea id="bio" placeholder="Write something about yourself..."></textarea>
+            <label for="bio">Bio:</label>
+            <textarea id="bio" placeholder="Write something about yourself"></textarea>
+            <div id="bioError" class="error-message"></div>
 
-          <button type="submit">Save Changes</button>
-          <a href="/FrontEnd/views/index.html   " class="back-button">← Back to Home</a>
+            <button type="submit">Save Profile</button>
+
+
         </form>
       </div>
 
       <div class="section">
-        <h2>Settings</h2>
-        <p>Settings content goes here.</p>
+        <h2>My Wishlist</h2>
+        <p>You currently have no items in your wishlist.</p>
       </div>
 
       <div class="section">
-        <h2>Activity</h2>
-        <p>Activity logs and updates will appear here.</p>
+        <h2>My Addresses</h2>
+        <p>No addresses saved. Add one through the account settings.</p>
+      </div>
+
+      <div class="section">
+        <h2>Settings</h2>
+        <p>Customize your preferences and change password here.</p>
       </div>
     </div>
   </div>
