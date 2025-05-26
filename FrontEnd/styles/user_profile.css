@@ -179,6 +179,50 @@ form button:hover {
   visibility: visible;
 }
 
+/* Simple styles for wishlist buttons and list */
+    #wishlistItems {
+      list-style: none;
+      padding-left: 0;
+    }
+    #wishlistItems li {
+      margin: 8px 0;
+      padding: 8px;
+      background: #f4f4f4;
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 400px;
+    }
+    #wishlistItems button {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #wishlistItems button:hover {
+      background-color: #c0392b;
+    }
+    #wishlistInput {
+      padding: 8px;
+      width: 300px;
+      margin-right: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    #addWishlistBtn {
+      padding: 8px 12px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #addWishlistBtn:hover {
+      background-color: #2980b9;
+    }
 
 /* Responsive layout */
 @media (max-width: 768px) {
