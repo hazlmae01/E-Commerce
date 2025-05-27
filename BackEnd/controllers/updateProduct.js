@@ -22,11 +22,11 @@ const updateProduct = async (req, res) => {
       return res.status(400).json({ status: "error", error: "Price must be a positive number." });
     }
 
-    // Optionally validate other fields (name, description, category_id) here as well
     if (!name || !description || !category_id) {
       return res.status(400).json({ status: "error", error: "Name, description and category_id are required." });
     }
 
+    // Update product without image field
     await db.query(
       `UPDATE products SET name = ?, description = ?, price = ?, stock_quantity = ?, category_id = ? WHERE product_id = ?`,
       [name, description, productPrice, stockQty, category_id, id]

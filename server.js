@@ -2,6 +2,8 @@ const express = require("express");
 const db = require("./BackEnd/DB/db-config");
 const app = express();
 const cookie = require("cookie-parser");
+const methodOverride = require('method-override');
+
 const PORT = process.env.PORT || 3000;
 
 app.use("/scripts", express.static(__dirname + '/FrontEnd/scripts'));
@@ -11,6 +13,7 @@ app.use("/assets", express.static(__dirname + '/FrontEnd/assets'));
 app.set("view engine", "ejs");
 app.set("views", "./FrontEnd/views");
 
+app.use(methodOverride('_method'));
 app.use(cookie());
 app.use(express.json());
 
@@ -31,6 +34,7 @@ app.use("/api", require("./BackEnd/routes/auth"));
 app.use("/api", require("./BackEnd/routes/products"));
 app.use("/api/cart", require("./BackEnd/routes/cartRoutes"));
 app.use("/api/user", require("./BackEnd/routes/userRoutes"));
+app.use("/api/categories", require("./BackEnd/routes/categories"));
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

@@ -15,15 +15,32 @@
     <button id="logoutBtn" class="btn btn-link text-danger">Log out</button>
     <h3>Admin Panel</h3>
     <nav>
-      <a href="#" id="addProductBtn" class="active">Add Product</a>
+      <a href="#" id="createCategoryBtn">Create Category</a>
+      <a href="#" id="addProductBtn">Add Product</a>
       <a href="#" id="viewProductsBtn">View Products & Stocks</a>
       <a href="#" id="viewSoldBtn">View Sold Products</a>
     </nav>
   </div>
 
   <main class="content">
+    <!-- Create Category Form -->
+    <section id="createCategorySection" class="hidden">
+      <h2>Create Category</h2>
+      <form id="createCategoryForm">
+        <label for="categoryName">Category Name</label>
+        <input type="text" id="categoryName" name="name" required />
+        
+        <label for="categoryDescription">Description (optional)</label>
+        <textarea id="categoryDescription" name="description" rows="2"></textarea>
+
+        <button type="submit">Add Category</button>
+      </form>
+      <p id="categorySuccessMessage" style="color: green; display: none;"></p>
+      <p id="categoryErrorMessage" style="color: red; display: none;"></p>
+    </section>
+
     <!-- Add Product Form -->
-    <section id="addProductSection">
+    <section id="addProductSection" class="hidden">
       <h2>Add Product</h2>
       <form id="addProductForm" enctype="multipart/form-data">
         <label for="productName">Product Name</label>
@@ -39,7 +56,10 @@
         <input type="number" id="productStock" name="stock_quantity" min="0" required />
 
         <label for="productCategory">Category</label>
-        <input type="number" id="productCategory" name="category_id" required />
+        <!-- Use a dropdown select for category, loaded dynamically -->
+        <select id="productCategory" name="category_id" required>
+          <!-- categories loaded by JS -->
+        </select>
 
         <label for="productImage">Product Image</label>
         <input type="file" id="productImage" name="image" accept="image/*" required />
@@ -53,7 +73,7 @@
     <!-- View Products Table -->
     <section id="viewProductsSection" class="hidden">
       <h2>Current Products & Stocks</h2>
-      <table>
+      <table class="table table-striped">
         <thead>
           <tr>
             <th>ID</th>
@@ -62,20 +82,20 @@
             <th>Price</th>
             <th>Stock</th>
             <th>Category</th>
-            <th>Image</th> <!-- New column for image -->
+            <th>Image</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody id="productsTableBody">
-          <!-- Products will be loaded here dynamically -->
+          <!-- Products loaded dynamically -->
         </tbody>
       </table>
-
     </section>
 
     <!-- View Sold Products Table -->
     <section id="viewSoldSection" class="hidden">
       <h2>Sold Products</h2>
-      <table>
+      <table class="table table-striped">
         <thead>
           <tr>
             <th>Order ID</th>
