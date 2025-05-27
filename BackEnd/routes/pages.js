@@ -38,5 +38,8 @@ router.get("/product", (req, res) => {
 router.get("/profile", authMiddleware, (req, res) => {
   res.sendFile("user_profile.html", { root: "./FrontEnd/views" });
 });
+router.get("/category", (req, res) => {
+  res.sendFile("category.html", { root: "./FrontEnd/views" });
+});
 
 module.exports = router;
