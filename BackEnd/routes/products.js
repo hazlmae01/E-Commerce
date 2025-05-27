@@ -1,8 +1,10 @@
 const express = require("express");
+const db = require("../DB/db-config");
 const addProduct = require("../controllers/addProduct.js");
 const getProducts = require("../controllers/getProducts.js");
 const updateProduct = require("../controllers/updateProduct.js");
 const authMiddleware = require("../Middleware/authMiddleware.js");
+const getProductsByCategory = require("../controllers/getProductsByCategory");
 const multer = require("multer");
 const path = require("path");
 
@@ -81,4 +83,74 @@ router.delete("/products/:id", authMiddleware, async (req, res) => {
     res.status(500).json({ error: "Server error deleting product." });
   }
 });
+
+// Get products by category ID
+router.get("/category/:categoryId", async (req, res) => {
+  const { categoryId } = req.params;
+
+  try {
+    const [products] = await db.query(
+      `SELECT product_id, name, description, price, image_url 
+       FROM products 
+       WHERE category_id = ?`,
+      [categoryId]
+    );
+
+    if (products.length === 0) {
+      return res.status(404).json({ status: "error", error: "No products found for this category" });
+    }
+
+    res.json(products);
+  } catch (err) {
+    console.error("Get products by category error:", err);
+    res.status(500).json({ status: "error", error: "Server error" });
+  }
+});
+
+// New: Get products grouped by category
+router.get("/products-by-category", async (req, res) => {
+  const db = require("../DB/db-config.js");
+  try {
+    const [rows] = await db.query(`
+      SELECT c.category_id, c.name AS category_name,
+             p.product_id, p.name AS product_name, p.description, p.price, p.stock_quantity, p.image_url
+      FROM category c
+      LEFT JOIN products p ON c.category_id = p.category_id
+      ORDER BY c.category_id, p.product_id
+    `);
+
+    const categories = {};
+
+    rows.forEach(row => {
+      const catId = row.category_id;
+      if (!categories[catId]) {
+        categories[catId] = {
+          category_id: catId,
+          category_name: row.category_name,
+          products: []
+        };
+      }
+      if (row.product_id) {
+        categories[catId].products.push({
+          product_id: row.product_id,
+          name: row.product_name,
+          description: row.description,
+          price: Number(row.price),
+          stock_quantity: Number(row.stock_quantity),
+          image_url: row.image_url
+        });
+      }
+    });
+
+    const result = Object.values(categories);
+
+    res.json(result);
+  } catch (err) {
+    console.error("Error fetching products grouped by category:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+router.get("/category/:categoryId", getProductsByCategory);
+
 module.exports = router;
