@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>User Dashboard</title>
-  <link rel="stylesheet" href="/FrontEnd/styles/user_profile.css" />
+  <link rel="stylesheet" href="../styles/user_profile.css" />
 </head>
+
 <body>
   <div class="container">
     <div class="sidebar">
@@ -16,7 +18,6 @@
       </div>
       <ul class="menu">
         <li class="active">My Account</li>
-        <li>My Wishlist</li>
         <li>My Addresses</li>
         <li>Settings</li>
       </ul>
@@ -34,6 +35,18 @@
           <input type="email" id="email" placeholder="Enter Email" />
           <div id="emailError" class="error-message"></div>
 
+          
+          <label for="contactNumber">Contact Number</label>
+          <input type="text" id="contactNumber" placeholder="Enter Contact Number" />
+          <div id="contactNumberError" class="error-message"></div>
+          
+          <label for="bio">Bio</label>
+          <textarea id="bio" placeholder="Write something about yourself"></textarea>
+          <div id="bioError" class="error-message"></div>
+
+          <button type="submit">Save Profile</button>
+
+
           <label for="bio">Bio</label>
           <textarea id="bio" placeholder="Write something about yourself"></textarea>
           <div id="bioError" class="error-message"></div>
@@ -43,6 +56,7 @@
       </div>
 
       <div class="section">
+
         <h2>My Wishlist</h2>
         <input type="text" id="wishlistInput" placeholder="Add new item" />
         <button id="addWishlistBtn">Add to Wishlist</button>
@@ -53,16 +67,63 @@
       </div>
 
       <div class="section">
+
         <h2>My Addresses</h2>
-        <p>No addresses saved. Add one through the account settings.</p>
+
+        <div id="addressesList">
+          <p>No addresses saved. Add one through the account settings.</p>
+        </div>
+
+        <form id="addressForm">
+          <h3>Add New Address</h3>
+
+          <label for="addressLine1">Address</label>
+          <input type="text" id="addressLine1" placeholder="Address" required />
+
+          <label for="addressLine2">Landmarks</label>
+          <input type="text" id="addressLine2" placeholder="Landmarks (optional)" />
+
+          <label for="city">City</label>
+          <input type="text" id="city" placeholder="City" required />
+
+          <label for="state">State/Province</label>
+          <input type="text" id="state" placeholder="State or Province" required />
+
+          <label for="zip">ZIP/Postal Code</label>
+          <input type="text" id="zip" placeholder="ZIP or Postal Code" required />
+
+          <label for="country">Country</label>
+          <input type="text" id="country" placeholder="Country" required />
+
+          <button type="submit">Add Address</button>
+        </form>
       </div>
+
 
       <div class="section">
         <h2>Settings</h2>
-        <p>Customize your preferences and change password here.</p>
-      </div>
-    </div>
-  </div>
+
+
+        <form id="changePasswordForm">
+          <label for="currentPassword">Current Password</label>
+          <input type="password" id="currentPassword" placeholder="Enter current password" required />
+          <div id="currentPasswordError" class="error-message"></div>
+
+          <label for="newPassword">New Password</label>
+          <input type="password" id="newPassword" placeholder="Enter new password" required />
+          <div id="newPasswordError" class="error-message"></div>
+
+          <label for="confirmPassword">Confirm New Password</label>
+          <input type="password" id="confirmPassword" placeholder="Confirm new password" required />
+          <div id="confirmPasswordError" class="error-message"></div>
+
+          <button type="submit">Change Password</button>
+        </form>
+
+        <div id="passwordSuccessMessage" style="color: green; margin-top: 10px;"></div>
+
+
+        <script src="../scripts/user_profile.js"></script>
 
   <script>
     // Wishlist functionality
@@ -133,5 +194,7 @@
   </script>
 
   <script src="/FrontEnd/scripts/user_profile.js"></script>
+
 </body>
+
 </html>

@@ -310,3 +310,25 @@ form button:hover {
     border-radius: 6px;
   }
 }
+.address-item {
+  border: 1px solid #ddd;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
+  background-color: #fff;
+  transition: box-shadow 0.3s ease;
+}
+
+.address-item:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.address-item p {
+  margin: 5px 0;
+  color: #333;
+}
+
+.address-item strong {
+  font-size: 1.1em;
+}
