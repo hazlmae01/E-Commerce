@@ -35,5 +35,8 @@ router.get("/admin", authMiddleware, isAdmin, (req, res) => {
 router.get("/product", (req, res) => {
   res.sendFile("product.html", { root: "./FrontEnd/views" });
 });
+router.get("/profile", authMiddleware, (req, res) => {
+  res.sendFile("user_profile.html", { root: "./FrontEnd/views" });
+});
 
 module.exports = router;

@@ -26,10 +26,11 @@ app.use(express.json());
 
 
 
-app.use("/", require("./BackEnd/DB/pages"));
-app.use("/api", require("./BackEnd/DB/auth"));
-app.use("/api", require("./BackEnd/DB/products"));
-app.use("/api/cart", require("./BackEnd/DB/cartRoutes"));
+app.use("/", require("./BackEnd/routes/pages"));
+app.use("/api", require("./BackEnd/routes/auth"));
+app.use("/api", require("./BackEnd/routes/products"));
+app.use("/api/cart", require("./BackEnd/routes/cartRoutes"));
+app.use("/api/user", require("./BackEnd/routes/userRoutes"));
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

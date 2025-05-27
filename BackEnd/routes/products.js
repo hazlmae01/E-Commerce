@@ -35,7 +35,7 @@ const upload = multer({
 });
 
 router.get("/products/:id", async (req, res) => {
-  const db = require("./db-config.js");
+  const db = require("../DB/db-config.js");
   try {
     const { id } = req.params;
     const [rows] = await db.query("SELECT * FROM products WHERE product_id = ?", [id]);
