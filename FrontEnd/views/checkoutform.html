@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quick Cart Checkout</title>
+  <link rel="stylesheet" href="/FrontEnd/styles/checkoutform.css"/>
+</head>
+<body>
+  <div class="checkout-container">
+    <h2>Checkout</h2>
+    <form id="checkout-form" novalidate>
+      <div class="form-group">
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" name="fullname" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="address">Shipping Address</label>
+        <textarea id="address" name="address" rows="3" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="cardnumber">Card Number</label>
+        <input type="text" id="cardnumber" name="cardnumber" maxlength="16" required />
+      </div>
+
+      <div class="form-inline">
+        <div class="form-group">
+          <label for="expdate">Expiry Date</label>
+          <input type="month" id="expdate" name="expdate" required />
+        </div>
+
+        <div class="form-group">
+          <label for="cvv">CVV</label>
+          <input type="text" id="cvv" name="cvv" maxlength="4" required />
+        </div>
+      </div>
+
+      <button type="submit" id="submit-btn">Place Order</button>
+      <div id="message"></div>
+    </form>
+  </div>
+  <script src="/FrontEnd/scripts/checkoutform.js"></script>
+</body>
+</html>
