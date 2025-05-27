@@ -3,7 +3,7 @@ const db = require("../DB/db-config");
 async function getProducts(req, res) {
   try {
     const [rows] = await db.query(`
-      SELECT product_id, name, description, price, stock_quantity, category_id
+      SELECT product_id, name, description, price, stock_quantity, category_id, image_url
       FROM products
     `);
     res.json(rows);
