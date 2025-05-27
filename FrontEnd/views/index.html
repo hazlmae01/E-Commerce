@@ -7,17 +7,10 @@
     <title>Quick Cart</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Quick Cart</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../styles/style.css">
   
   <style>
-    .dropdown:hover .dropdown-menu {
-      display: block;
-      margin-top: 0;
-    }
+
   </style>
 
 </head>
@@ -25,7 +18,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-md navbar-dark bg-dark" style="padding: 4px 0;">
     <div class="container d-flex justify-content-between align-items-center">
-      <a class="navbar-brand fw-bold fs-3" href="/FrontEnd/views/index.html">QUICK CART</a>
+      <a class="navbar-brand fw-bold fs-3" href="/homepage">QUICK CART</a>
       
       <div class="d-flex justify-content-center flex-grow-1">
         <form class="d-flex w-50" role="search">
@@ -44,13 +37,14 @@
             <li><a class="dropdown-item" href="/FrontEnd/views/user_profile.html">My Account</a></li>
             <li><a class="dropdown-item" href="#">My Purchase</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+                <button id="logoutBtn" class="btn btn-link dropdown-item text-danger">Log out</button>
           </ul>
         </div>
-        <a class="nav-link" href="/FrontEnd/views/order.html"><i class="bi bi-cart4 fs-5 text-light"></i></a>
+        <a class="nav-link" href="/cart"><i class="bi bi-cart4 fs-5 text-light"></i></a>
       </div>
     </div>
   </nav>
+
 
 
     <div class="container mt-5">
@@ -88,46 +82,7 @@
                     </div>
                 </div>
             </div>
-
-  <!-- Content -->
-  <div class="container mt-5">
-    <!-- Categories -->
-    <div class="row mt-5">
-      <div class="col-12 text-center mb-4">
-        <h2>Categories</h2>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card">
-          <img src="" class="card-img-top" alt="Category 1">
-          <div class="card-body">
-            <h5 class="card-title">Shoes</h5>
-            <p class="card-text">Short description of Category 1</p>
-            <a href="#" class="btn btn-secondary">View Products</a>
-          </div>
         </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card">
-          <img src="" class="card-img-top" alt="Category 2">
-          <div class="card-body">
-            <h5 class="card-title">Phones</h5>
-            <p class="card-text">Short description of Category 2</p>
-            <a href="#" class="btn btn-secondary">View Products</a>
-          </div>
-
-        </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card">
-          <img src="" class="card-img-top" alt="Category 3">
-          <div class="card-body">
-            <h5 class="card-title">Kids Toys</h5>
-            <p class="card-text">Short description of Category 3</p>
-            <a href="#" class="btn btn-secondary">View Products</a>
-          </div>
-        </div>
-      </div>
-    </div>
 
 
         <div class="row mt-5">
@@ -175,71 +130,20 @@
                 </div>
             </div>
 
-    <!-- Hot Sales -->
-    <div class="row mt-5">
-      <div class="col-12 text-center mb-4">
-        <h2>Hot Sales</h2>
-      </div>
-      <div class="col-md-3 mb-4">
-        <div class="card">
-          <img src="/FrontEnd/assets/kerji.jpg" class="card-img-top" alt="Hot Sale 1">
-          <div class="card-body">
-            <h5 class="card-title">Hot Sale 1</h5>
-            <p class="card-text">This product is on sale!</p>
-            <a href="#" class="btn btn-danger">Buy Now</a>
+
           </div>
 
+        <div class="row mt-5">
+            <div class="col-12">
+                <h2 class="text-center mb-4">Featured Products</h2>
+                <div class="row" id="products-container">
+                    <!-- Products will be loaded dynamically here by homePage.js -->
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-md-3 mb-4">
-        <div class="card">
-          <img src="" class="card-img-top" alt="Hot Sale 2">
-          <div class="card-body">
-            <h5 class="card-title">Hot Sale 2</h5>
-            <p class="card-text">This product is on sale!</p>
-            <a href="#" class="btn btn-danger">Buy Now</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 mb-4">
-        <div class="card">
-          <img src="" class="card-img-top" alt="Hot Sale 3">
-          <div class="card-body">
-            <h5 class="card-title">Hot Sale 3</h5>
-            <p class="card-text">This product is on sale!</p>
-            <a href="#" class="btn btn-danger">Buy Now</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 mb-4">
-        <div class="card">
-          <img src="" class="card-img-top" alt="Hot Sale 4">
-          <div class="card-body">
-            <h5 class="card-title">Hot Sale 4</h5>
-            <p class="card-text">This product is on sale!</p>
-            <a href="#" class="btn btn-danger">Buy Now</a>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <!-- Featured Products -->
-    <div class="row mt-5">
-      <div class="col-12">
-        <h2 class="text-center mb-4">Featured Products</h2>
-        <div class="row">
-          <div class="col-md-3 mb-4">
-            <div class="card">
-              <img src="" class="card-img-top" alt="Product 1">
-              <div class="card-body">
-                <h5 class="card-title">Product 1</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 mb-4">
-            <div class="card">
-              <img src="/FrontEnd/assets/shirt.jpg" class="card-img-top" alt="Product 2">
-              <div class="card-body">
-                <h
+    <script src="../scripts/logout.js"></script>
+    <script src="../scripts/homePage.js"></script>
+</body>
+</html>

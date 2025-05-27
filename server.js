@@ -6,9 +6,11 @@ const PORT = process.env.PORT || 3000;
 
 app.use("/scripts", express.static(__dirname + '/FrontEnd/scripts'));
 app.use("/styles", express.static(__dirname + '/FrontEnd/styles'));
-app.use("/images", express.static(__dirname + '/FrontEnd/images'));
+app.use("/assets", express.static(__dirname + '/FrontEnd/assets'));
+
 app.set("view engine", "ejs");
 app.set("views", "./FrontEnd/views");
+
 app.use(cookie());
 app.use(express.json());
 
@@ -22,9 +24,12 @@ app.use(express.json());
   }
 })();
 
+
+
 app.use("/", require("./BackEnd/DB/pages"));
-app.use("/api", require("./BackEnd/controllers/auth"));
-app.use("/api", require("./BackEnd/controllers/products"));
+app.use("/api", require("./BackEnd/DB/auth"));
+app.use("/api", require("./BackEnd/DB/products"));
+app.use("/api/cart", require("./BackEnd/DB/cartRoutes"));
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

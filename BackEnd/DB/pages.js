@@ -24,7 +24,7 @@ router.get("/addProduct", authMiddleware, (req, res) => {
 });
 
 router.get("/cart", authMiddleware, (req, res) => {
-    res.sendFile("order.html", { root: "./FrontEnd/views" });
+    res.sendFile("cart.html", { root: "./FrontEnd/views" });
 });
 router.get("/unauthorized", (req, res) => {
     res.sendFile("unauthorized.html", { root: "./FrontEnd/views" });
@@ -32,6 +32,8 @@ router.get("/unauthorized", (req, res) => {
 router.get("/admin", authMiddleware, isAdmin, (req, res) => {
   res.sendFile("admin.html", { root: "./FrontEnd/views" });
 });
-
+router.get("/product", (req, res) => {
+  res.sendFile("product.html", { root: "./FrontEnd/views" });
+});
 
 module.exports = router;
