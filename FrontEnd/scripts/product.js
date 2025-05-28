@@ -28,12 +28,12 @@ async function loadProduct() {
     // Show product details with quantity input
     container.innerHTML = `
       <div class="col-md-6">
-        <img src="${product.image_url || 'https://via.placeholder.com/450'}" class="img-fluid rounded" alt="${product.name}" />
+        <img src="${product.image_url || '/assets/default-product.png'}" class="img-fluid rounded" alt="${product.name}" />
       </div>
       <div class="col-md-6">
         <h2>${product.name}</h2>
         <p>${product.description}</p>
-        <h4 class="text-success">$${Number(product.price).toFixed(2)}</h4>
+        <h4 class="text-success">₱${Number(product.price).toFixed(2)}</h4>
         <p>Category ID: ${product.category_id || "N/A"}</p>
         <p>
           Stock: 

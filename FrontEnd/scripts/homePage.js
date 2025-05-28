@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         col.innerHTML = `
           <div class="card h-100 shadow-sm">
-            <img src="${imageUrl}" class="card-img-top" alt="${product.name}" style="height: 200px; object-fit: cover;">
+            <img src="${imageUrl || '/assets/default-product.png'}" class="card-img-top" alt="${product.name}" style="height: 200px; object-fit: cover;">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">
                 <a href="/product?id=${product.product_id}" class="text-decoration-none">${product.name}</a>
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <p class="card-text small">${product.description}</p>
               ${stockDisplay}
               <div class="mt-auto">
-                <p class="fw-bold">$${Number(product.price).toFixed(2)}</p>
+                <p class="fw-bold">₱${Number(product.price).toFixed(2)}</p>
                 ${addToCartButton}
               </div>
             </div>
