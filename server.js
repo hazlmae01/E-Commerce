@@ -35,7 +35,7 @@ app.use("/api", require("./BackEnd/routes/products"));
 app.use("/api/cart", require("./BackEnd/routes/cartRoutes"));
 app.use("/api/user", require("./BackEnd/routes/userRoutes"));
 app.use("/api/categories", require("./BackEnd/routes/categories"));
-
+app.use("/api/order", require("./BackEnd/routes/orderRoutes"));
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
