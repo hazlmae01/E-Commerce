@@ -7,8 +7,11 @@ body {
 .container {
   display: flex;
   min-height: 100vh;
+  /* Allow flex children to shrink on smaller screens */
+  flex-wrap: nowrap;
 }
 
+/* Sidebar */
 .sidebar {
   width: 250px;
   background-color: white;
@@ -17,6 +20,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .profile-summary {
@@ -43,6 +47,7 @@ body {
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  white-space: nowrap;
 }
 
 .upload-btn:hover {
@@ -58,12 +63,14 @@ body {
   font-size: 18px;
   font-weight: 600;
   color: #333;
+  word-break: break-word;
 }
 
 .menu {
   list-style: none;
   padding: 0;
   width: 100%;
+  margin: 0;
 }
 
 .menu li {
@@ -75,6 +82,7 @@ body {
   transition: background-color 0.3s, color 0.3s;
   text-align: left;
   margin-top: 10px;
+  user-select: none;
 }
 
 .menu li.active,
@@ -83,11 +91,13 @@ body {
   color: white;
 }
 
+/* Main content */
 .profile-content {
   flex: 1;
   background-color: white;
   padding: 30px;
   overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .profile-content h2 {
@@ -117,6 +127,7 @@ form textarea {
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
+  box-sizing: border-box;
 }
 
 form textarea {
@@ -179,8 +190,63 @@ form button:hover {
   visibility: visible;
 }
 
+/* Wishlist styles */
+#wishlistItems {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+}
 
-/* Responsive layout */
+#wishlistItems li {
+  margin: 8px 0;
+  padding: 8px;
+  background: #f4f4f4;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 400px;
+  word-break: break-word;
+}
+
+#wishlistItems button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+#wishlistItems button:hover {
+  background-color: #c0392b;
+}
+
+#wishlistInput {
+  padding: 8px;
+  width: 300px;
+  margin-right: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+#addWishlistBtn {
+  padding: 8px 12px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+#addWishlistBtn:hover {
+  background-color: #2980b9;
+}
+
+/* ----------- Responsive styles ------------ */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -191,39 +257,57 @@ form button:hover {
     width: 100%;
     border-right: none;
     border-bottom: 1px solid #ddd;
-    padding: 15px;
+    padding: 15px 10px;
+    flex-direction: column;  /* STACK vertically */
+    align-items: center;    /* center content */
+    justify-content: flex-start; /* align to top */
   }
 
-  .menu li {
+  /* Profile summary becomes block centered on top */
+  .profile-summary {
+    display: flex;
+    flex-direction: column; /* stack photo + upload vertically */
+    align-items: center;
+    margin-bottom: 20px;
     text-align: center;
-    padding: 14px;
-    font-size: 16px;
+    width: 100%;
   }
 
   .profile-summary img {
-    width: 60px;
-    height: 60px;
+    width: 80px;  /* a bit bigger on mobile */
+    height: 80px;
+    margin-bottom: 10px;  /* space between photo and button */
   }
 
   .upload-btn {
-    font-size: 12px;
-    padding: 5px 8px;
-  }
-
-  .profile-content {
-    padding: 20px;
-  }
-
-  form input,
-  form textarea,
-  form button {
-    font-size: 16px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  form label {
     font-size: 14px;
+    padding: 6px 14px;
+  }
+
+  .profile-summary h3 {
+    font-size: 18px;
+    margin: 10px 0 0;
+    white-space: normal; /* allow name to wrap if long */
+  }
+
+  /* Menu below profile summary, full width, vertical list */
+  .menu {
+    display: flex;
+    flex-direction: column;  /* vertical list */
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
+
+  .menu li {
+    flex: none;
+    width: 100%;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 16px;
+    margin: 6px 0;
+    border-radius: 6px;
   }
 }
 .address-item {
