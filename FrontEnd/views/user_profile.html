@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
   <title>User Dashboard</title>
   <link rel="stylesheet" href="../styles/user_profile.css" />
 </head>
@@ -35,39 +35,21 @@
           <input type="email" id="email" placeholder="Enter Email" />
           <div id="emailError" class="error-message"></div>
 
-          
           <label for="contactNumber">Contact Number</label>
           <input type="text" id="contactNumber" placeholder="Enter Contact Number" />
           <div id="contactNumberError" class="error-message"></div>
-          
-          <label for="bio">Bio</label>
-          <textarea id="bio" placeholder="Write something about yourself"></textarea>
-          <div id="bioError" class="error-message"></div>
-
-          <button type="submit">Save Profile</button>
-
 
           <label for="bio">Bio</label>
           <textarea id="bio" placeholder="Write something about yourself"></textarea>
           <div id="bioError" class="error-message"></div>
 
           <button type="submit">Save Profile</button>
+
+
         </form>
       </div>
 
       <div class="section">
-
-        <h2>My Wishlist</h2>
-        <input type="text" id="wishlistInput" placeholder="Add new item" />
-        <button id="addWishlistBtn">Add to Wishlist</button>
-        <ul id="wishlistItems">
-          <!-- Wishlist items will appear here -->
-        </ul>
-        <p id="emptyWishlistMessage">You currently have no items in your wishlist.</p>
-      </div>
-
-      <div class="section">
-
         <h2>My Addresses</h2>
 
         <div id="addressesList">
@@ -103,7 +85,6 @@
       <div class="section">
         <h2>Settings</h2>
 
-
         <form id="changePasswordForm">
           <label for="currentPassword">Current Password</label>
           <input type="password" id="currentPassword" placeholder="Enter current password" required />
@@ -124,77 +105,6 @@
 
 
         <script src="../scripts/user_profile.js"></script>
-
-  <script>
-    // Wishlist functionality
-
-    const wishlistInput = document.getElementById('wishlistInput');
-    const addWishlistBtn = document.getElementById('addWishlistBtn');
-    const wishlistItems = document.getElementById('wishlistItems');
-    const emptyWishlistMessage = document.getElementById('emptyWishlistMessage');
-
-    // Load wishlist from localStorage or start with empty array
-    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-
-    function renderWishlist() {
-      wishlistItems.innerHTML = ''; // Clear existing list
-
-      if (wishlist.length === 0) {
-        emptyWishlistMessage.style.display = 'block';
-      } else {
-        emptyWishlistMessage.style.display = 'none';
-        wishlist.forEach((item, index) => {
-          const li = document.createElement('li');
-          li.textContent = item;
-
-          // Add a remove button
-          const removeBtn = document.createElement('button');
-          removeBtn.textContent = 'Remove';
-          removeBtn.onclick = () => {
-            removeFromWishlist(index);
-          };
-
-          li.appendChild(removeBtn);
-          wishlistItems.appendChild(li);
-        });
-      }
-    }
-
-    function addToWishlist() {
-      const newItem = wishlistInput.value.trim();
-      if (newItem === '') {
-        alert('Please enter an item to add.');
-        return;
-      }
-
-      wishlist.push(newItem);
-      localStorage.setItem('wishlist', JSON.stringify(wishlist));
-      wishlistInput.value = '';
-      renderWishlist();
-    }
-
-    function removeFromWishlist(index) {
-      wishlist.splice(index, 1);
-      localStorage.setItem('wishlist', JSON.stringify(wishlist));
-      renderWishlist();
-    }
-
-    // Event listener for Add button
-    addWishlistBtn.addEventListener('click', addToWishlist);
-
-    // Also add on Enter key for input field
-    wishlistInput.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') {
-        addToWishlist();
-      }
-    });
-
-    // Initial render on page load
-    renderWishlist();
-  </script>
-
-  <script src="/FrontEnd/scripts/user_profile.js"></script>
-
 </body>
 
 </html>
