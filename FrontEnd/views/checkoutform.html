@@ -1,51 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quick Cart Checkout</title>
-  <link rel="stylesheet" href="/FrontEnd/styles/checkoutform.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/checkoutform.css" />
 </head>
+
 <body>
+
+  <div id="cartItemsContainer"></div>
+  <div id="cartTotal"></div>
+
   <div class="checkout-container">
-    <h2>Checkout</h2>
     <form id="checkout-form" novalidate>
       <div class="form-group">
         <label for="fullname">Full Name</label>
-        <input type="text" id="fullname" name="fullname" required />
+        <input type="text" id="fullname" name="fullname" readonly />
       </div>
 
       <div class="form-group">
         <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" required />
+        <input type="email" id="email" name="email" readonly />
+      </div>
+      <div class="form-group">
+        <label for="contactNumber">Contact Number</label>
+        <input type="text" id="contactNumber" name="contactNumber" readonly />
       </div>
 
       <div class="form-group">
-        <label for="address">Shipping Address</label>
-        <textarea id="address" name="address" rows="3" required></textarea>
+        <label for="addressSelect">Select Shipping Address</label>
+        <select id="addressSelect" name="addressSelect" required>
+          <option value="">-- Select an address --</option>
+          <!-- Options will be filled dynamically -->
+        </select>
       </div>
 
-      <div class="form-group">
-        <label for="cardnumber">Card Number</label>
-        <input type="text" id="cardnumber" name="cardnumber" maxlength="16" required />
+      <div id="newAddressSection" style="display:none;">
+        <h3>Add New Address</h3>
+        <label for="newAddressLine1">Address Line 1</label>
+        <input type="text" id="newAddressLine1" name="newAddressLine1" />
+
+        <label for="newAddressLine2">Address Line 2</label>
+        <input type="text" id="newAddressLine2" name="newAddressLine2" />
+
+        <label for="newCity">City</label>
+        <input type="text" id="newCity" name="newCity" />
+
+        <label for="newState">State</label>
+        <input type="text" id="newState" name="newState" />
+
+        <label for="newZip">Zip Code</label>
+        <input type="text" id="newZip" name="newZip" />
+
+        <label for="newCountry">Country</label>
+        <input type="text" id="newCountry" name="newCountry" />
       </div>
 
-      <div class="form-inline">
-        <div class="form-group">
-          <label for="expdate">Expiry Date</label>
-          <input type="month" id="expdate" name="expdate" required />
-        </div>
-
-        <div class="form-group">
-          <label for="cvv">CVV</label>
-          <input type="text" id="cvv" name="cvv" maxlength="4" required />
-        </div>
-      </div>
+      <button type="button" id="addNewAddressBtn">Add New Address</button>
 
       <button type="submit" id="submit-btn">Place Order</button>
       <div id="message"></div>
     </form>
+
   </div>
-  <script src="/FrontEnd/scripts/checkoutform.js"></script>
+  <script src="../scripts/checkoutform.js"></script>
 </body>
+
 </html>
