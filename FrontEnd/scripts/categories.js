@@ -1,5 +1,6 @@
 async function fetchCategories() {
   try {
+    
     const response = await fetch("/api/categories"); // your backend categories API
     if (!response.ok) throw new Error("Failed to fetch categories");
     const categories = await response.json();
@@ -14,7 +15,7 @@ function createCategoryCard(category) {
   return `
     <div class="col-md-4 mb-4">
       <div class="card">
-        <img src="${category.image_url || '/assets/default-category.png'}" class="card-img-top" alt="${category.name}">
+        <img src="${category.image_url || '/assets/categories/default-category.png'}" class="card-img-top" alt="${category.name}">
         <div class="card-body">
           <h5 class="card-title">${category.name}</h5>
           <p class="card-text">${category.description || ''}</p>
