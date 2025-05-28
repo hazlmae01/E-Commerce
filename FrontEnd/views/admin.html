@@ -26,15 +26,19 @@
     <!-- Create Category Form -->
     <section id="createCategorySection" class="hidden">
       <h2>Create Category</h2>
-      <form id="createCategoryForm">
+      <form id="createCategoryForm" enctype="multipart/form-data">
         <label for="categoryName">Category Name</label>
         <input type="text" id="categoryName" name="name" required />
-        
+
         <label for="categoryDescription">Description (optional)</label>
         <textarea id="categoryDescription" name="description" rows="2"></textarea>
 
+        <label for="categoryImage">Category Image</label>
+        <input type="file" id="categoryImage" name="image" accept="image/*" required />
+
         <button type="submit">Add Category</button>
       </form>
+
       <p id="categorySuccessMessage" style="color: green; display: none;"></p>
       <p id="categoryErrorMessage" style="color: red; display: none;"></p>
     </section>
