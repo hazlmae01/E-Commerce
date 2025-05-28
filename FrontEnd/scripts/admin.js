@@ -65,21 +65,14 @@ createCategoryForm.addEventListener("submit", async (e) => {
   categorySuccessMessage.style.display = "none";
   categoryErrorMessage.style.display = "none";
 
-  const name = createCategoryForm.name.value.trim();
-  const description = createCategoryForm.description.value.trim();
-
-  if (!name) {
-    categoryErrorMessage.textContent = "Category name is required.";
-    categoryErrorMessage.style.display = "block";
-    return;
-  }
+  const formData = new FormData(createCategoryForm);
 
   try {
     const res = await fetch("/api/categories", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, description }),
+      body: formData, // No need to set Content-Type; browser will set it with boundary
     });
+
     const result = await res.json();
 
     if (res.ok) {
@@ -204,7 +197,7 @@ async function loadProducts() {
               <td class="pid">${prod.product_id}</td>
               <td class="name">${prod.name}</td>
               <td class="description">${prod.description}</td>
-              <td class="price">$${prod.price}</td>
+              <td class="price">₱${prod.price}</td>
               <td class="stock">${prod.stock_quantity}</td>
               <td class="category">${prod.category_name || "N/A"}</td>
               <td class="image"><img src="${prod.image_url}" alt="${prod.name}" style="width: 50px; height: auto;" /></td>
