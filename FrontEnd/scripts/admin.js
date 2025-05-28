@@ -70,7 +70,7 @@ createCategoryForm.addEventListener("submit", async (e) => {
   try {
     const res = await fetch("/api/categories", {
       method: "POST",
-      body: formData, // No need to set Content-Type; browser will set it with boundary
+      body: formData,
     });
 
     const result = await res.json();
@@ -168,7 +168,7 @@ async function getCategoriesOptionsHTML(selectedCategory) {
 
     if (Array.isArray(categories) && categories.length > 0) {
       return categories
-        .map(cat => 
+        .map(cat =>
           `<option value="${cat.category_id}" ${cat.name === selectedCategory ? "selected" : ""}>${cat.name}</option>`
         )
         .join("");
@@ -239,10 +239,11 @@ async function handleEditClick(event) {
     originalProductData[productId] = {
       name: tr.querySelector(".name").textContent,
       description: tr.querySelector(".description").textContent,
-      price: tr.querySelector(".price").textContent.replace("$", ""),
+      price: tr.querySelector(".price").textContent.replace("₱", ""),
       stock_quantity: tr.querySelector(".stock").textContent,
-      category: tr.querySelector(".category").textContent,
+      category_id: tr.querySelector(".category").dataset.categoryId // add a data attribute in render?
     };
+
 
     // Replace cells with inputs
     tr.querySelector(".name").innerHTML = `<input type="text" value="${originalProductData[productId].name}">`;
@@ -368,35 +369,90 @@ async function handleDeleteClick(event) {
 
 async function loadSoldProducts() {
   const tbody = document.getElementById("soldProductsTableBody");
-  tbody.innerHTML = "<tr><td colspan='6'>Loading...</td></tr>";
+  tbody.innerHTML = "<tr><td colspan='7'>Loading...</td></tr>";
 
   try {
-    const res = await fetch("/api/sold-products");
-    const soldProducts = await res.json();
+    const res = await fetch("/api/order/");
+    const orders = await res.json();
 
-    if (Array.isArray(soldProducts) && soldProducts.length > 0) {
-      tbody.innerHTML = soldProducts
-        .map((prod) => {
+    if (Array.isArray(orders) && orders.length > 0) {
+      tbody.innerHTML = orders
+        .map((order) => {
           return `
-            <tr>
-              <td>${prod.product_id}</td>
-              <td>${prod.name}</td>
-              <td>${prod.price}</td>
-              <td>${prod.quantity_sold}</td>
-              <td>${prod.sale_date}</td>
+            <tr data-order-id="${order.order_id}">
+              <td>${order.order_id}</td>
+              <td>${order.user_name}</td>
+              <td>₱${order.totalAmount}</td>
+              <td>—</td> <!-- You may fill quantity if needed -->
+              <td>${new Date(order.orderDate).toLocaleString()}</td>
+              <td>
+                <select class="order-status-select">
+                  <option value="Pending" ${order.orderStatus === "Pending" ? "selected" : ""}>Pending</option>
+                  <option value="Shipped" ${order.orderStatus === "Shipped" ? "selected" : ""}>Shipped</option>
+                  <option value="Delivered" ${order.orderStatus === "Delivered" ? "selected" : ""}>Delivered</option>
+                  <option value="Cancelled" ${order.orderStatus === "Cancelled" ? "selected" : ""}>Cancelled</option>
+                </select>
+              </td>
+              <td>
+                <button class="btn btn-sm btn-success save-status-btn">Save</button>
+              </td>
             </tr>
           `;
         })
         .join("");
+      addSoldProductsEventListeners();
     } else {
-      tbody.innerHTML = "<tr><td colspan='6'>No sold products found.</td></tr>";
+      tbody.innerHTML = "<tr><td colspan='7'>No sold products found.</td></tr>";
     }
   } catch (err) {
-    tbody.innerHTML = "<tr><td colspan='6'>Failed to load sold products.</td></tr>";
-    console.error(err);
+    console.error("Fetch error:", err);
+    tbody.innerHTML = "<tr><td colspan='7'>Failed to load sold products.</td></tr>";
   }
 }
+
+
+function addSoldProductsEventListeners() {
+  document.querySelectorAll(".save-status-btn").forEach((btn) => {
+    btn.addEventListener("click", async (event) => {
+      const tr = event.target.closest("tr");
+      const orderId = tr.dataset.orderId;
+      const select = tr.querySelector(".order-status-select");
+      const newStatus = select.value;
+
+      try {
+        const res = await fetch(`/api/order/${orderId}/status`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ order_status: newStatus }),
+        });
+
+        const text = await res.text();
+        console.log("Response text:", text);
+
+        let result;
+        try {
+          result = JSON.parse(text);
+        } catch {
+          alert("Server returned unexpected response (possibly HTML)");
+          return;
+        }
+
+        if (res.ok) {
+          alert("Order status updated successfully.");
+          loadSoldProducts();
+        } else {
+          alert(result.error || "Failed to update order status.");
+        }
+      } catch (err) {
+        alert("Network or server error.");
+        console.error(err);
+      }
+    });
+  });
+}
+
 
 // On page load, default view to create category
 setActive(createCategoryBtn);
 showSection(createCategorySection);
+loadSoldProducts();
