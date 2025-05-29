@@ -41,5 +41,11 @@ router.get("/profile", authMiddleware, (req, res) => {
 router.get("/category", (req, res) => {
   res.sendFile("category.html", { root: "./FrontEnd/views" });
 });
+router.get("/checkout", authMiddleware, (req, res) => {
+  res.sendFile("checkoutform.html", { root: "./FrontEnd/views" });
+});
+router.get("/thankyou", authMiddleware, (req, res) => {
+  res.sendFile("thankyou.html", { root: "./FrontEnd/views" });
+});
 
 module.exports = router;

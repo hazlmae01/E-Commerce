@@ -101,14 +101,14 @@ router.get("/addresses", authMiddleware, async (req, res) => {
 
 // POST /api/user/addresses
 router.post("/addresses", authMiddleware, async (req, res) => {
-  const { addressLine1, addressLine2, city, state, zip, country } = req.body;
+  const { address_line1, address_line2, city, state, zip, country } = req.body;
   const userId = req.user.user_id;
 
   try {
     await db.query(
-      `INSERT INTO addresses (user_id, address_line1, address_line2, city, state, zip, country)
+      `INSERT INTO user_addresses (user_id, address_line1, address_line2, city, state, zip, country)
        VALUES (?, ?, ?, ?, ?, ?, ?)`,
-      [userId, addressLine1, addressLine2, city, state, zip, country]
+      [userId, address_line1, address_line2, city, state, zip, country]
     );
     res.json({ success: true });
   } catch (err) {
@@ -137,12 +137,5 @@ router.post("/change-password", authMiddleware, async (req, res) => {
     res.status(500).json({ success: false, message: "Failed to change password" });
   }
 });
-const addressesController = require("../controllers/addressController");
-
-// GET user addresses
-router.get("/addresses", authMiddleware, addressesController.getUserAddresses);
-
-// POST add address
-router.post("/addresses", authMiddleware, addressesController.addUserAddress);
 
 module.exports = router;

@@ -116,3 +116,23 @@ function updateSubtotal() {
 
   document.getElementById("cart-subtotal").textContent = `₱${subtotal.toFixed(2)}`;
 }
+document.getElementById("checkoutBtn").addEventListener("click", () => {
+  const selectedIds = [];
+
+  document.querySelectorAll(".cart-checkbox:checked").forEach(checkbox => {
+    const itemEl = checkbox.closest(".cart-item");
+    selectedIds.push(itemEl.dataset.id);
+  });
+
+  if (selectedIds.length === 0) {
+    alert("Please select at least one item to checkout.");
+    return;
+  }
+
+  // Redirect with selected items in URL
+  const params = new URLSearchParams();
+  params.set("items", selectedIds.join(","));
+  window.location.href = `/checkout?${params.toString()}`;
+});
+
+

@@ -226,8 +226,8 @@ async function loadAddresses() {
 addressForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const addressLine1 = document.getElementById("addressLine1").value.trim();
-  const addressLine2 = document.getElementById("addressLine2").value.trim();
+  const address_line1 = document.getElementById("addressLine1").value.trim();
+  const address_line2 = document.getElementById("addressLine2").value.trim();
   const city = document.getElementById("city").value.trim();
   const state = document.getElementById("state").value.trim();
   const zip = document.getElementById("zip").value.trim();
@@ -239,7 +239,7 @@ addressForm.addEventListener("submit", async (e) => {
     const res = await fetch("/api/user/addresses", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ addressLine1, addressLine2, city, state, zip, country }),
+      body: JSON.stringify({ address_line1, address_line2, city, state, zip, country }),
     });
 
     const result = await res.json();
